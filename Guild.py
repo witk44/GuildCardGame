@@ -1,7 +1,7 @@
 import pygame
 import cryptography
 
-
+Tile_Size = 64
 Game_Deck = []
 Cards = []
 Players = []
