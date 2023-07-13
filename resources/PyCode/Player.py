@@ -8,3 +8,7 @@ class Player:
         self.faked_deck = self.current_deck
         self.gold = 0
         
+
+    def pocket(self):
+        if self.gold < 20:
+            self.gold+=1

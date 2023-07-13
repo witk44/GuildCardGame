@@ -28,6 +28,10 @@ class GuildGame:
     def __init__(self) -> None:
         create_cards()  
         build_deck(4)
+
+    def start_game(self):
+        create_players(3)
+        deal_cards()
     
 def create_cards(): #creates one instance of each card type
     Cards.append(Alchemist())
@@ -61,6 +65,5 @@ def deal_cards():
             x.current_deck.append(Game_Deck[index])
             index+=1
         
-GuildGame()
-create_players(3)
-deal_cards()
+Game = GuildGame()
+Game.start_game()
