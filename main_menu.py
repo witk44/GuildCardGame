@@ -16,8 +16,7 @@ screen = pygame.display.set_mode((screen_width, screen_height), pygame.FULLSCREE
 pygame.display.set_caption("Guild Card Game")
 
 # Load the background image
-background_image = pygame.image.load(app_path("resources/images/Guild_Logo.jpg"))  # Replace "background_image.jpg" with your image file path
-
+background_image = pygame.image.load(app_path("resources/images/Guild_Logo.jpg"))  
 # Resize the background image to fit the screen
 background_image = pygame.transform.scale(background_image, (screen_width, screen_height))
 
@@ -27,11 +26,11 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 
 # Set up fonts
-font_title = pygame.font.Font(None, 64)
-font_options = pygame.font.Font(None, 32)
+font_title = pygame.font.Font(None, 72)
+font_options = pygame.font.Font(None, 48)
 
 # Set up text
-title_text = font_title.render("Game Main Menu", True, WHITE)
+title_text = font_title.render("Guild Main Menu", True, WHITE)
 join_text = font_options.render("Join Game", True, WHITE)
 host_text = font_options.render("Host Game", True, WHITE)
 
@@ -44,11 +43,11 @@ server_process = None
 client_process = None
 # Function to start the server in a separate thread
 def start_server():
-    server_process = subprocess.Popen(['python', 'resources/PyCode/server.py'])
+    server_process = subprocess.Popen(['python', app_path('resources/PyCode/server.py')])
 
 # Function to start the client in a separate thread
 def start_client():
-    client_process = subprocess.Popen(['python', 'resources/PyCode/client.py'])
+    client_process = subprocess.Popen(['python', app_path('resources/PyCode/client.py')])
 
 
 
