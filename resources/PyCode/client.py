@@ -12,26 +12,33 @@ SERVER_PORT = 5000  # Change this to the server port
 
 # Client configuration
 CLIENT_IP = '127.0.0.1'  # Change this to the client IP address
-CLIENT_PORT = 5001  # Change this to the client port
+CLIENT_PORT = 5002  # Change this to the client port
 
 # Initialize the client socket
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client_socket.connect((SERVER_IP, SERVER_PORT))
 
+
+player_x = 400
+player_y = 300
+
 # Function to handle receiving data from the server
 def receive_data():
-    while True:
-        try:
-            # Receive data from the server
-            data = client_socket.recv(1024).decode('utf-8')
-            # Process the received data
-            
-            # TODO: Update game state based on the received data
-            
-        except Exception as e:
-            print(f"Error: {e}")
-            client_socket.close()
-            break
+    run = True
+    # while run:
+    try:
+        # Receive data from the server
+        data = client_socket.recv(1024).decode('utf-8')
+        # Process the received data
+        data = data.split(" ")
+        player_x = data[1]
+        player_y = data[2]
+        # TODO: Update game state based on the received data
+        run = False
+    except Exception as e:
+        print(f"Error: {e}")
+        client_socket.close()
+        
 
 # Function to send data to the server
 def send_data(data):
@@ -51,8 +58,6 @@ pygame.init()
 screen = pygame.display.set_mode((800, 600))
 clock = pygame.time.Clock()
 
-player_x = 400
-player_y = 300
 
 running = True
 

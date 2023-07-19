@@ -5,7 +5,6 @@ import threading
 from resources.PyCode.utilities import *
 import subprocess
 
-
 # Initialize Pygame
 pygame.init()
 
