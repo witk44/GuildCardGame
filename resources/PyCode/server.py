@@ -1,13 +1,18 @@
 import socket
 import threading
 from GameCode import *
+from utilities import *
+
+
+
 s = socket.socket()
 host = socket.gethostname()
 ip = socket.gethostbyname(host)
-game_code = encrypt_game_code(ip,str(5000))
+port = find_open_port()
+game_code = encrypt_game_code(str(ip),str(port))
 # Server configuration
 SERVER_IP = ip  # Change this to your desired server IP address
-SERVER_PORT = 5000  # Change this to your desired server port
+SERVER_PORT = port  # Change this to your desired server port
 
 # Initialize the server socket
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -44,8 +49,6 @@ def accept_connections():
         # Start a new thread to handle the client
         client_thread = threading.Thread(target=handle_client, args=(client_socket, client_address))
         client_thread.start()
-
-
 
 
 # Start accepting incoming connections

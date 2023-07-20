@@ -43,6 +43,7 @@ client_process = None
 # Function to start the server in a separate thread
 def start_server():
     server_process = subprocess.Popen(['python', app_path('resources/PyCode/server.py')])
+    
 
 # Function to start the client in a separate thread
 def start_client():
@@ -58,6 +59,10 @@ while True:
             sys.exit()
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
+                if server_process != None:
+                    server_process.kill()
+                if client_process != None:
+                    client_process.kill()
                 pygame.quit()
                 sys.exit()
         elif event.type == pygame.MOUSEBUTTONDOWN:
