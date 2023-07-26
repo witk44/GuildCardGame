@@ -13,14 +13,16 @@ def decrypt_game_code(game_code):
     ip = ""
     port = ""
     switch = False
-    for letter in game_code:
-        if letter == "P":
-            switch = True
-            continue
-        if switch:
-           port += code_to_ip[letter]
-        else:
-            ip+=code_to_ip[letter]
+    game_code = str(game_code).upper()
+    for letter in game_code :
+        if letter in code_to_ip:
+            if letter == "P":
+                switch = True
+                continue
+            if switch:
+                port += code_to_ip[letter]
+            else:
+                ip+=code_to_ip[letter]
     return ip,port
 
 game_code = encrypt_game_code("127.0.0.1","52")

@@ -2,6 +2,7 @@ import pygame
 import socket
 import threading
 import sys
+import ipaddress
 from utilities import *
 from GameCode import *
 s = socket.socket()
@@ -83,15 +84,15 @@ def enter_game_code():
 enter_game_code()
 server_ip,server_port=decrypt_game_code(game_code)
 # Server configuration
-SERVER_IP = server_ip  
-SERVER_PORT = server_port 
+SERVER_IP = server_ip
+SERVER_PORT = server_port
 
 # Client configuration
 CLIENT_IP = ip  
 CLIENT_PORT = find_open_port()  
 # Initialize the client socket
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-client_socket.connect((SERVER_IP, SERVER_PORT))
+client_socket.connect((int(ipaddress.ip_address(SERVER_IP)), int(SERVER_PORT)))
 
 
 player_x = 400
