@@ -54,8 +54,6 @@ def enter_game_code():
             elif event.type == pygame.KEYDOWN:
                 # Check if the key pressed is alphanumeric or space
                 if event.unicode.isalnum():
-                    
-                    print(event.unicode)
                     game_code += event.unicode
                 # If Backspace is pressed, remove the last character from user_input
                 elif event.key == pygame.K_BACKSPACE:
@@ -92,7 +90,7 @@ CLIENT_IP = ip
 CLIENT_PORT = find_open_port()  
 # Initialize the client socket
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-client_socket.connect((int(ipaddress.ip_address(SERVER_IP)), int(SERVER_PORT)))
+client_socket.connect((SERVER_IP, int(SERVER_PORT)))
 
 
 player_x = 400
