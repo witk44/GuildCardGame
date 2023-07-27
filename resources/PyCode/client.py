@@ -2,7 +2,6 @@ import pygame
 import socket
 import threading
 import sys
-import ipaddress
 from utilities import *
 from GameCode import *
 s = socket.socket()
@@ -13,7 +12,7 @@ def enter_game_code():
     pygame.init()
 
     # Set up the display
-    screen_width, screen_height = 400, 200
+    screen_width, screen_height = 500, 300
     screen = pygame.display.set_mode((screen_width, screen_height))
     pygame.display.set_caption("Enter Game Code")
     

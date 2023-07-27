@@ -38,6 +38,7 @@ def create_pygame_screen(game_code, num_of_players):
     font = pygame.font.Font(None, 36)
 
     while True:
+       
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -94,4 +95,5 @@ def accept_connections():
 print("Server started. Waiting for connections...")
 accept_thread = threading.Thread(target=accept_connections)
 accept_thread.start()
-create_pygame_screen(game_code,len(clients))
+game_code_thread = threading.Thread(target=create_pygame_screen, args=(game_code, len(clients)))
+game_code_thread.start()
