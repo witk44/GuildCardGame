@@ -38,42 +38,46 @@ title_text_rect = title_text.get_rect(center=(screen_width // 2, screen_height /
 join_text_rect = join_text.get_rect(center=(screen_width // 2, screen_height // 2))
 host_text_rect = host_text.get_rect(center=(screen_width // 2, screen_height // 2 + 50))
 
-server_process = None
-client_process = None
 # Function to start the server in a separate thread
 def start_server():
+    global server_process
     server_process = subprocess.Popen(['python', app_path('resources/PyCode/server.py')])
     
 
 # Function to start the client in a separate thread
 def start_client():
+    global client_process  
     client_process = subprocess.Popen(['python', app_path('resources/PyCode/client.py')])
 
+def kill_client():
+    client_process.kill()
 
+def kill_server():
+    server_process.kill()
 
 # Main menu loop
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
+            kill_client()
+            kill_server()
             pygame.quit()
             sys.exit()
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
-                if server_process != None:
-                    server_process.kill()
-                if client_process != None:
-                    client_process.kill()
                 pygame.quit()
                 sys.exit()
         elif event.type == pygame.MOUSEBUTTONDOWN:
             mouse_pos = pygame.mouse.get_pos()
             if join_text_rect.collidepoint(mouse_pos):
                 client_thread = threading.Thread(target=start_client)
+                client_thread.daemon = True
                 client_thread.start()
                 print("Joining a game...")
                 # Add your code for joining a game here
             elif host_text_rect.collidepoint(mouse_pos):
                 server_thread = threading.Thread(target=start_server)
+                server_thread.daemon = True
                 server_thread.start()
                 print("Hosting a game...")
                 # Add your code for hosting a game here

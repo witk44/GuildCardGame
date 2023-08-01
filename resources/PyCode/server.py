@@ -92,11 +92,13 @@ def accept_connections():
 
         # Start a new thread to handle the client
         client_thread = threading.Thread(target=handle_client, args=(client_socket, client_address))
+        client_thread.setDaemon(True)
         client_thread.start()
 
 
 # Start accepting incoming connections
 print("Server started. Waiting for connections...")
 accept_thread = threading.Thread(target=accept_connections)
+accept_thread.daemon = True
 accept_thread.start()
 create_pygame_screen(game_code)

@@ -92,6 +92,9 @@ client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client_socket.connect((SERVER_IP, int(SERVER_PORT)))
 
 
+global player_x
+global player_y
+
 player_x = 400
 player_y = 300
 
@@ -100,19 +103,18 @@ player_y = 300
 # Function to handle receiving data from the server
 def receive_data():
     run = True
-    # while run:
-    try:
-        # Receive data from the server
-        data = client_socket.recv(1024).decode('utf-8')
-        # Process the received data
-        data = data.split(" ")
-        player_x = data[1]
-        player_y = data[2]
-        # TODO: Update game state based on the received data
-        run = False
-    except Exception as e:
-        print(f"Error: {e}")
-        client_socket.close()
+    while run:
+        try:
+            # Receive data from the server
+            data = client_socket.recv(1024).decode('utf-8')
+            # Process the received data
+            data = data.split(" ")
+            player_x = data[1]
+            player_y  = data[2]
+            # TODO: Update game state based on the received data
+        except Exception as e:
+            print(f"Error: {e}")
+            client_socket.close()
         
 
 # Function to send data to the server
@@ -126,6 +128,7 @@ def send_data(data):
 
 # Start receiving data from the server
 receive_thread = threading.Thread(target=receive_data)
+receive_thread.daemon = True
 receive_thread.start()
 # Pygame initialization
 pygame.init()
