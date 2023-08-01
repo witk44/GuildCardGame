@@ -1,7 +1,7 @@
 
 
 
-class Nercomancer:
+class Necromancer:
     def __init__(self) -> None:
         self.cost = 3
         self.cooldown = 0

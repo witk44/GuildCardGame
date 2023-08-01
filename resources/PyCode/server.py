@@ -31,18 +31,22 @@ clients = []  # List to store client connections
 
 
 # Function to create the Pygame screen
-def create_pygame_screen(game_code, num_of_players):
+def create_pygame_screen(game_code):
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     pygame.display.set_caption("Game Information")
 
     font = pygame.font.Font(None, 36)
 
     while True:
-       
+        num_of_players = len(clients)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    pygame.quit()
+                    sys.exit()
 
         # Clear the screen
         screen.fill((255, 255, 255))
@@ -95,5 +99,4 @@ def accept_connections():
 print("Server started. Waiting for connections...")
 accept_thread = threading.Thread(target=accept_connections)
 accept_thread.start()
-game_code_thread = threading.Thread(target=create_pygame_screen, args=(game_code, len(clients)))
-game_code_thread.start()
+create_pygame_screen(game_code)
