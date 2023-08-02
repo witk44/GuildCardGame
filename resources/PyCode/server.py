@@ -92,7 +92,7 @@ def accept_connections():
 
         # Start a new thread to handle the client
         client_thread = threading.Thread(target=handle_client, args=(client_socket, client_address))
-        client_thread.setDaemon(True)
+        client_thread.daemon = True
         client_thread.start()
 
 

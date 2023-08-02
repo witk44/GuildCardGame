@@ -7,6 +7,15 @@ from GameCode import *
 s = socket.socket()
 host = socket.gethostname()
 ip = socket.gethostbyname(host)
+
+
+class BlueSquare():
+    def __init__(self) -> None:
+        self.x = 400
+        self.y = 300
+
+my_square = BlueSquare()
+
 def enter_game_code():
     global game_code
     pygame.init()
@@ -92,11 +101,8 @@ client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client_socket.connect((SERVER_IP, int(SERVER_PORT)))
 
 
-global player_x
-global player_y
 
-player_x = 400
-player_y = 300
+
 
 
 
@@ -109,8 +115,9 @@ def receive_data():
             data = client_socket.recv(1024).decode('utf-8')
             # Process the received data
             data = data.split(" ")
-            player_x = data[1]
-            player_y  = data[2]
+            print(data)
+            my_square.x = int(data[1])
+            my_square.y  = int(data[2])
             # TODO: Update game state based on the received data
         except Exception as e:
             print(f"Error: {e}")
@@ -145,22 +152,28 @@ while running:
             pygame.quit()
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                player_x -= 5
-                send_data(f"POS {player_x} {player_y}")  # Send player position to the server
+                my_square.x -= 5
+                send_data(f"POS {my_square.x} {my_square.y}")  # Send player position to the server
             elif event.key == pygame.K_RIGHT:
-                player_x += 5
-                send_data(f"POS {player_x} {player_y}")  # Send player position to the server
+                my_square.x += 5
+                send_data(f"POS {my_square.x} {my_square.y}")  # Send player position to the server
             elif event.key == pygame.K_UP:
-                player_y -= 5
-                send_data(f"POS {player_x} {player_y}")  # Send player position to the server
+                my_square.y -= 5
+                send_data(f"POS {my_square.x} {my_square.y}")  # Send player position to the server
             elif event.key == pygame.K_DOWN:
-                player_y += 5
-                send_data(f"POS {player_x} {player_y}")  # Send player position to the server
-
+                my_square.y += 5
+                send_data(f"POS {my_square.x} {my_square.y}")  # Send player position to the server     
+            elif event.key == pygame.K_ESCAPE:
+                running = False
+                pygame.quit()
     # TODO: Update game state based on the server updates
 
     # Update the game display
     screen.fill((255, 255, 255))
-    pygame.draw.rect(screen, (0, 0, 255), (player_x, player_y, 50, 50))
+    print(my_square.x)
+    print(my_square.y)
+    rect = pygame.Rect(my_square.x, my_square.y, 50, 50)
+    pygame.draw.rect(screen, (0, 0, 255), rect)
     pygame.display.flip()
     clock.tick(60)
+
