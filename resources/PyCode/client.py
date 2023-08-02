@@ -4,6 +4,7 @@ import threading
 import sys
 from utilities import *
 from GameCode import *
+import pyperclip
 s = socket.socket()
 host = socket.gethostname()
 ip = socket.gethostbyname(host)
@@ -173,7 +174,7 @@ while running:
     print(my_square.x)
     print(my_square.y)
     rect = pygame.Rect(my_square.x, my_square.y, 50, 50)
-    pygame.draw.rect(screen, (0, 0, 255), rect)
+    pygame.draw.rect(screen, (0, 255, 255), rect)
     pygame.display.flip()
     clock.tick(60)
 

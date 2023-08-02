@@ -4,7 +4,7 @@ import socket
 import threading
 from GameCode import *
 from utilities import *
-
+import pyperclip
 # Define screen dimensions
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
