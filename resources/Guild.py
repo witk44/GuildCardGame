@@ -14,8 +14,13 @@ from PyCode.cards.Princess import Princess
 from PyCode.cards.Queen import Queen
 from PyCode.cards.Thief import Thief
 from PyCode.Player import Player
+from PyCode.config import *
 
 Tile_Size = 64
+
+
+num_of_cards = card_to_player_ratio
+
 
 class GuildGame:
     def __init__(self) -> None:

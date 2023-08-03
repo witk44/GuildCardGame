@@ -29,7 +29,7 @@ font_title = pygame.font.Font(None, 72)
 font_options = pygame.font.Font(None, 48)
 
 # Set up text
-title_text = font_title.render("Guild Main Menu", True, WHITE)
+title_text = font_title.render("Main Menu", True, WHITE)
 join_text = font_options.render("Join Game", True, WHITE)
 host_text = font_options.render("Host Game", True, WHITE)
 

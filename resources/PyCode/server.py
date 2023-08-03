@@ -102,3 +102,7 @@ accept_thread = threading.Thread(target=accept_connections)
 accept_thread.daemon = True
 accept_thread.start()
 create_pygame_screen(game_code)
+
+
+def return_clients():
+    return clients

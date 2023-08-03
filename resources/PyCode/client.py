@@ -33,25 +33,13 @@ def enter_game_code():
     # Set up colors
     black = (0, 0, 0)
     white = (255, 255, 255)
-
+    gray = (128,128,128)
     # Set up fonts
     font = pygame.font.Font(None, 32)
 
     # Initialize variables
     game_code = ""
-
-    # Create a submit button
-    class SubmitButton(pygame.sprite.Sprite):
-        def __init__(self):
-            super().__init__()
-            self.image = pygame.Surface((60, 30))
-            self.image.fill(black)
-            self.rect = self.image.get_rect(center=(screen_width // 2, 180))
-
-        def update(self):
-            pass
-
-    submit_button = SubmitButton()
+    submit_button = SubmitButton(screen_width,screen_height)
     all_sprites = pygame.sprite.Group(submit_button)
     run = True
     while run:
@@ -177,4 +165,6 @@ while running:
     pygame.draw.rect(screen, (0, 255, 255), rect)
     pygame.display.flip()
     clock.tick(60)
+
+
 
