@@ -47,7 +47,6 @@ def enter_game_code():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-
             elif event.type == pygame.KEYDOWN:
                 # Check if the key pressed is alphanumeric or space
                 if event.unicode.isalnum():
@@ -55,7 +54,9 @@ def enter_game_code():
                 # If Backspace is pressed, remove the last character from user_input
                 elif event.key == pygame.K_BACKSPACE:
                     game_code = game_code[:-1]
-
+                elif event.key == pygame.K_ESCAPE:
+                    pygame.quit()
+                    sys.exit()
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 # Check if the submit button is clicked
                 if submit_button.rect.collidepoint(event.pos):

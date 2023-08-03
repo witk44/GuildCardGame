@@ -1,5 +1,5 @@
 card_to_player_ratio = {3:{
-    "Assasin":2,
+    "Assassin":2,
     "King":2,
     "Queen":2,
     "Thief":3,
@@ -13,7 +13,7 @@ card_to_player_ratio = {3:{
     "Marksman":2,
     "Commoner":5
 },4:{
-    "Assasin":3,
+    "Assassin":3,
     "King":3,
     "Queen":2,
     "Thief":3,
@@ -27,7 +27,7 @@ card_to_player_ratio = {3:{
     "Marksman":3,
     "Commoner":6
 },5:{
-    "Assasin":3,
+    "Assassin":3,
     "King":3,
     "Queen":3,
     "Thief":4,
@@ -41,7 +41,7 @@ card_to_player_ratio = {3:{
     "Marksman":3,
     "Commoner":6
 },6:{
-    "Assasin":4,
+    "Assassin":4,
     "King":4,
     "Queen":3,
     "Thief":4,
@@ -55,7 +55,7 @@ card_to_player_ratio = {3:{
     "Marksman":4,
     "Commoner":7
 },7:{
-    "Assasin":4,
+    "Assassin":4,
     "King":4,
     "Queen":3,
     "Thief":5,
@@ -69,7 +69,7 @@ card_to_player_ratio = {3:{
     "Marksman":4,
     "Commoner":8
 },8:{
-    "Assasin":5,
+    "Assassin":5,
     "King":5,
     "Queen":4,
     "Thief":5,

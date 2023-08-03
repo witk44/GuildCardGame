@@ -15,7 +15,7 @@ from PyCode.cards.Queen import Queen
 from PyCode.cards.Thief import Thief
 from PyCode.Player import Player
 from PyCode.config import *
-
+from PyCode.utilities import *
 Tile_Size = 64
 
 
@@ -36,9 +36,33 @@ class GuildGame:
         self.deal_cards()
 
     def build_deck(self, num_players): # creates the game deck based on the number of players
-        for card in self.Cards:
-            self.Game_Deck.append(card)
-
+        card_dict = num_of_cards[num_players]
+        for x in range(card_dict["Alchemist"]):
+            self.Game_Deck.append(self.Cards[0])
+        for x in range(card_dict["Assassin"]):
+            self.Game_Deck.append(self.Cards[1])
+        for x in range(card_dict["Cleric"]):
+            self.Game_Deck.append(self.Cards[2])
+        for x in range(card_dict["Commoner"]):
+            self.Game_Deck.append(self.Cards[3])
+        for x in range(card_dict["Jester"]):
+            self.Game_Deck.append(self.Cards[4])
+        for x in range(card_dict["King"]):
+            self.Game_Deck.append(self.Cards[5])
+        for x in range(card_dict["Knight"]):
+            self.Game_Deck.append(self.Cards[6])
+        for x in range(card_dict["Marksman"]):
+            self.Game_Deck.append(self.Cards[7])
+        for x in range(card_dict["Merchant"]):
+            self.Game_Deck.append(self.Cards[8])
+        for x in range(card_dict["Necromancer"]):
+            self.Game_Deck.append(self.Cards[9])
+        for x in range(card_dict["Princess"]):
+            self.Game_Deck.append(self.Cards[10])
+        for x in range(card_dict["Queen"]):
+            self.Game_Deck.append(self.Cards[11])
+        for x in range(card_dict["Thief"]):
+            self.Game_Deck.append(self.Cards[12])
     def create_players(self, num_players):
         for i in range(num_players):
             self.Players.append(Player())

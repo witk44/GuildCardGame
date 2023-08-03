@@ -34,7 +34,6 @@ clients = []  # List to store client connections
 def create_pygame_screen(game_code):
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     pygame.display.set_caption("Game Information")
-
     font = pygame.font.Font(None, 36)
 
     while True:
@@ -49,7 +48,7 @@ def create_pygame_screen(game_code):
                     sys.exit()
 
         # Clear the screen
-        screen.fill((255, 255, 255))
+        screen.fill(guild_background)
 
         # Render the game code and number of players on the screen
         game_code_text = font.render("Game Code: " + game_code, True, (0, 0, 0))
