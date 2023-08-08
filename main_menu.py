@@ -15,7 +15,14 @@ screen = pygame.display.set_mode((screen_width, screen_height), pygame.FULLSCREE
 pygame.display.set_caption("Guild Card Game")
 
 # Load the background image
-background_image = pygame.image.load(app_path("resources/images/Guild_Logo.jpg"))  
+background_image = pygame.image.load(app_path("resources/images/GuildPoster.png")) 
+main_menu_image = pygame.image.load(app_path("resources/images/Guild_Logo_Clear.png")) 
+# Create a sprite group
+all_sprites = pygame.sprite.Group()
+
+# Create the sinusoidal sprite
+sinusoidal_sprite = SinusoidalSprite(main_menu_image, screen_width//2,50, 15, 0.10,screen_height)
+all_sprites.add(sinusoidal_sprite)
 # Resize the background image to fit the screen
 background_image = pygame.transform.scale(background_image, (screen_width, screen_height))
 
@@ -28,13 +35,9 @@ WHITE = (255, 255, 255)
 font_title = pygame.font.Font(None, 72)
 font_options = pygame.font.Font(None, 48)
 
-# Set up text
-title_text = font_title.render("Main Menu", True, WHITE)
 join_text = font_options.render("Join Game", True, WHITE)
 host_text = font_options.render("Host Game", True, WHITE)
 
-# Set up text positions
-title_text_rect = title_text.get_rect(center=(screen_width // 2, screen_height // 4))
 join_text_rect = join_text.get_rect(center=(screen_width // 2, screen_height // 2))
 host_text_rect = host_text.get_rect(center=(screen_width // 2, screen_height // 2 + 50))
 
@@ -86,11 +89,12 @@ while True:
     screen.fill(BLACK)
      # Draw the background image
     screen.blit(background_image, (0, 0))
-
-    # Draw the text
-    screen.blit(title_text, title_text_rect)
+    
     screen.blit(join_text, join_text_rect)
     screen.blit(host_text, host_text_rect)
+    
+    all_sprites.update()
+    all_sprites.draw(screen)
 
     # Update the display
     pygame.display.flip()

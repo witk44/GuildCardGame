@@ -4,6 +4,7 @@ import socket
 import threading
 from GameCode import *
 from utilities import *
+from buttons import *
 import pyperclip
 # Define screen dimensions
 SCREEN_WIDTH = 800
@@ -35,7 +36,7 @@ def create_pygame_screen(game_code):
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     pygame.display.set_caption("Game Information")
     font = pygame.font.Font(None, 36)
-
+    starg_game_button = StartGameButton(SCREEN_WIDTH,SCREEN_HEIGHT)
     while True:
         num_of_players = len(clients)
         for event in pygame.event.get():
@@ -46,6 +47,10 @@ def create_pygame_screen(game_code):
                 if event.key == pygame.K_ESCAPE:
                     pygame.quit()
                     sys.exit()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                # Check if the submit button is clicked
+                if starg_game_button.rect.collidepoint(event.pos):
+                    pass
 
         # Clear the screen
         screen.fill(guild_background)
@@ -58,10 +63,17 @@ def create_pygame_screen(game_code):
         game_code_rect = game_code_text.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 50))
         num_of_players_rect = num_of_players_text.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 50))
 
+        #CREATES START GAME IF THERE ARE ENOUGH PLAYERS
+        if num_of_players >= 3:
+            all_sprites = pygame.sprite.Group(starg_game_button)
+            all_sprites.update()
+            all_sprites.draw(screen)
+
+
         # Blit the text on the screen
         screen.blit(game_code_text, game_code_rect)
         screen.blit(num_of_players_text, num_of_players_rect)
-
+        pygame.display.update()
         pygame.display.flip()
 
 # Function to handle client connections

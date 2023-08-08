@@ -4,6 +4,7 @@ import threading
 import sys
 from utilities import *
 from GameCode import *
+from buttons import *
 import pyperclip
 s = socket.socket()
 host = socket.gethostname()
