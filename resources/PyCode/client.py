@@ -41,7 +41,8 @@ def enter_game_code():
     # Initialize variables
     game_code = ""
     submit_button = SubmitButton(screen_width,screen_height)
-    all_sprites = pygame.sprite.Group(submit_button)
+    paste_button = PasteButton(screen_width,screen_height)
+    all_sprites = pygame.sprite.Group(submit_button,paste_button)
     run = True
     while run:
         for event in pygame.event.get():
@@ -61,6 +62,9 @@ def enter_game_code():
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 # Check if the submit button is clicked
                 if submit_button.rect.collidepoint(event.pos):
+                    run = False
+                elif paste_button.rect.collidepoint(event.pos):
+                    game_code = pyperclip.paste()
                     run = False
         if run:
             # Clear the screen
@@ -106,7 +110,6 @@ def receive_data():
             data = client_socket.recv(1024).decode('utf-8')
             # Process the received data
             data = data.split(" ")
-            print(data)
             my_square.x = int(data[1])
             my_square.y  = int(data[2])
             # TODO: Update game state based on the received data
@@ -161,8 +164,6 @@ while running:
 
     # Update the game display
     screen.fill((255, 255, 255))
-    print(my_square.x)
-    print(my_square.y)
     rect = pygame.Rect(my_square.x, my_square.y, 50, 50)
     pygame.draw.rect(screen, (0, 255, 255), rect)
     pygame.display.flip()

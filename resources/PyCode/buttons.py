@@ -48,7 +48,24 @@ class CopyButton(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center=(int((screen_width -90)), int(screen_height // 2 - 50)))
 
         # Set the "Submit" text on the button in black
-        font = pygame.font.Font(None, 18)
-        text_surface = font.render("Start Game", True, guild_secondary)
+        font = pygame.font.Font(None, 12)
+        text_surface = font.render("Copy", True, guild_secondary)
+        text_rect = text_surface.get_rect(center=self.image.get_rect().center)
+        self.image.blit(text_surface, text_rect)
+
+
+class PasteButton(pygame.sprite.Sprite):
+    def __init__(self,screen_width,screen_height):
+        super().__init__()
+        width = 30
+        height = 30
+        
+        self.image = pygame.Surface((width, height))
+        self.image.fill(guild_primary)
+        self.rect = self.image.get_rect(center=(int((screen_width -90)), int(25)))
+
+        # Set the "Submit" text on the button in black
+        font = pygame.font.Font(None, 12)
+        text_surface = font.render("Paste", True, guild_secondary)
         text_rect = text_surface.get_rect(center=self.image.get_rect().center)
         self.image.blit(text_surface, text_rect)

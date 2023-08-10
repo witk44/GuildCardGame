@@ -18,7 +18,6 @@ host = socket.gethostname()
 ip = socket.gethostbyname(host)
 port = find_open_port()
 game_code = encrypt_game_code(str(ip),str(port))
-print(game_code)
 # Server configuration
 SERVER_IP = ip  # Change this to your desired server IP address
 SERVER_PORT = port  # Change this to your desired server port
@@ -37,6 +36,7 @@ def create_pygame_screen(game_code):
     pygame.display.set_caption("Game Information")
     font = pygame.font.Font(None, 36)
     starg_game_button = StartGameButton(SCREEN_WIDTH,SCREEN_HEIGHT)
+    copy_button = CopyButton(SCREEN_WIDTH,SCREEN_HEIGHT)
     while True:
         num_of_players = len(clients)
         for event in pygame.event.get():
@@ -51,6 +51,8 @@ def create_pygame_screen(game_code):
                 # Check if the submit button is clicked
                 if starg_game_button.rect.collidepoint(event.pos):
                     pass
+                elif copy_button.rect.collidepoint(event.pos):
+                    pyperclip.copy(game_code)
 
         # Clear the screen
         screen.fill(guild_background)
@@ -63,13 +65,16 @@ def create_pygame_screen(game_code):
         game_code_rect = game_code_text.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 50))
         num_of_players_rect = num_of_players_text.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 50))
 
-        #CREATES START GAME IF THERE ARE ENOUGH PLAYERS
+        #CREATES START GAME BUTTON IF THERE ARE ENOUGH PLAYERS
         if num_of_players >= 3:
-            all_sprites = pygame.sprite.Group(starg_game_button)
+            all_sprites = pygame.sprite.Group(starg_game_button,copy_button)
             all_sprites.update()
             all_sprites.draw(screen)
-
-
+        else:
+            all_sprites = pygame.sprite.Group(copy_button)
+            all_sprites.update()
+            all_sprites.draw(screen)
+    
         # Blit the text on the screen
         screen.blit(game_code_text, game_code_rect)
         screen.blit(num_of_players_text, num_of_players_rect)

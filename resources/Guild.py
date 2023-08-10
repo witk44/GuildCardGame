@@ -35,6 +35,9 @@ class GuildGame:
         self.create_players(3)
         self.deal_cards()
 
+    def roll_dice(self):
+        pass
+
     def build_deck(self, num_players): # creates the game deck based on the number of players
         card_dict = num_of_cards[num_players]
         for x in range(card_dict["Alchemist"]):
@@ -68,6 +71,8 @@ class GuildGame:
             self.Players.append(Player())
 
     def deal_cards(self):
+        random.shuffle(self.Game_Deck)
+        random.shuffle(self.Game_Deck)
         random.shuffle(self.Game_Deck)
         index = 0
         for i in range(3):
