@@ -1,6 +1,6 @@
 # Guild Card Game Video Game
 
-![Guild Card Game Logo](logo.png)
+![Guild Card Game Logo](resources/images/Guild_Logo_Clear.png)
 
 Welcome to the virtual adaptation of the **Guild Card Game**, the popular card game from [www.guildcardgame.com](https://www.guildcardgame.com)! Immerse yourself in a world of strategy, tactics, and camaraderie as you build and lead your guild to victory. This README provides essential information to get you started on your digital card-playing adventure.
 
