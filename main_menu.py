@@ -19,9 +19,9 @@ background_image = pygame.image.load(app_path("resources/images/GuildPoster.png"
 main_menu_image = pygame.image.load(app_path("resources/images/Guild_Logo_Clear.png")) 
 # Create a sprite group
 all_sprites = pygame.sprite.Group()
-
+main_menu_image = pygame.transform.scale(main_menu_image,(screen_width//4,screen_height//3))
 # Create the sinusoidal sprite
-sinusoidal_sprite = SinusoidalSprite(main_menu_image, screen_width//2,50, 15, 0.10,screen_height)
+sinusoidal_sprite = SinusoidalSprite(main_menu_image, screen_width//2,100, 15, 0.10,screen_height)
 all_sprites.add(sinusoidal_sprite)
 # Resize the background image to fit the screen
 background_image = pygame.transform.scale(background_image, (screen_width, screen_height))
