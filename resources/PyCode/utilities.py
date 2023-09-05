@@ -39,3 +39,14 @@ class SinusoidalSprite(pygame.sprite.Sprite):
     def update(self):
         self.rect.y = self.rect.y // 2 + int(self.amplitude * math.sin(self.angle))
         self.angle += self.frequency
+
+
+def quick_sort(l):
+    if len(l) <= 1:
+        return l
+    else:
+        return quick_sort([e for e in l[1:] if e <= l[0]]) + [l[0]] +\
+            quick_sort([e for e in l[1:] if e > l[0]])
+
+def kill_player_card(player):
+    pass

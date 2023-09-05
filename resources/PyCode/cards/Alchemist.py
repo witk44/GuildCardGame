@@ -1,5 +1,5 @@
 
-
+import random
 
 class Alchemist:
     def __init__(self) -> None:
@@ -15,4 +15,10 @@ class Alchemist:
             multiplier =2
         else:
             multiplier = 1
+
+        number = random.randint(1,6)
+        if number in numbers:
+            return amount*multiplier
+        else:
+            return 0
         

@@ -21,6 +21,18 @@ Tile_Size = 64
 
 num_of_cards = card_to_player_ratio
 
+# Initialize Pygame
+pygame.init()
+
+# Set up the display
+screen_info = pygame.display.Info()
+screen_width, screen_height = screen_info.current_w, screen_info.current_h
+screen = pygame.display.set_mode((screen_width, screen_height), pygame.FULLSCREEN)
+pygame.display.set_caption("Guild Card Game")
+
+
+
+
 
 class GuildGame:
     def __init__(self) -> None:
@@ -30,13 +42,25 @@ class GuildGame:
         self.Players = []
 
         self.build_deck(4)
+        self.game_finished = False
 
     def start_game(self):
         self.create_players(3)
         self.deal_cards()
 
     def roll_dice(self):
-        pass
+        die_rolls_player = {}
+        die_rolls = []
+        for player in self.Players:
+            number = random.randint(1,6)
+            die_rolls_player[player] = number
+            die_rolls.append(number)
+
+        for i in range(6):
+            if die_rolls.count(i) > 1:
+                pass
+
+        
 
     def build_deck(self, num_players): # creates the game deck based on the number of players
         card_dict = num_of_cards[num_players]
@@ -82,3 +106,19 @@ class GuildGame:
 
 Game = GuildGame()
 Game.start_game()
+Game.roll_dice()
+
+def kill_player_card(player):
+    pass
+
+def select_player(player,screen):
+    FONT = pygame.font.Font(None,36)
+    for player in Game.players:
+        text = FONT.render(player, True, (0,0,0))
+        text_rect = text.get_rect(center=(screen_width // 2, y))
+        screen.blit(text, text_rect)
+        y += 50
+
+
+while not Game.game_finished:
+    pass
