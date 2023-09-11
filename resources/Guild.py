@@ -40,6 +40,14 @@ class GuildGame:
                       Knight(), Marksman(), Merchant(), Necromancer(), Princess(), Queen(), Thief()]
         self.Game_Deck = []
         self.Players = []
+        # Initialize Pygame
+        pygame.init()
+
+        # Set up the display
+        self.screen_info = pygame.display.Info()
+        self.screen_width, self.screen_height = self.screen_info.current_w, self.screen_info.current_h
+        self.screen = pygame.display.set_mode((self.screen_width, self.screen_height), pygame.FULLSCREEN)
+        pygame.display.set_caption("Guild Card Game")
 
         self.build_deck(4)
         self.game_finished = False
@@ -108,17 +116,26 @@ Game = GuildGame()
 Game.start_game()
 Game.roll_dice()
 
+
 def kill_player_card(player):
     pass
 
-def select_player(player,screen):
+def select_player(player):
     FONT = pygame.font.Font(None,36)
-    for player in Game.players:
-        text = FONT.render(player, True, (0,0,0))
+    screen = Game.screen
+    y = 200
+    for player in Game.Players:
+        text = FONT.render(str(player), True, (150,150,150))
         text_rect = text.get_rect(center=(screen_width // 2, y))
         screen.blit(text, text_rect)
         y += 50
+    
+     # Update the display
+    pygame.display.flip()
 
-
-while not Game.game_finished:
-    pass
+select_player("player")
+# while not Game.game_finished:
+#     pass
+x = 0
+while x <90000000:
+    x+=1
