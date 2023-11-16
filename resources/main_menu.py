@@ -2,7 +2,7 @@ import pygame
 import sys
 import socket
 import threading
-from resources.PyCode.utilities import *
+from PyCode.utilities import *
 import subprocess
 
 # Initialize Pygame
@@ -41,16 +41,20 @@ host_text = font_options.render("Host Game", True, WHITE)
 join_text_rect = join_text.get_rect(center=(screen_width // 2, screen_height // 2))
 host_text_rect = host_text.get_rect(center=(screen_width // 2, screen_height // 2 + 50))
 
+client_on, server_on = False, False
+
 # Function to start the server in a separate thread
 def start_server():
     global server_process
     server_process = subprocess.Popen(['python', app_path('resources/PyCode/server.py')])
-    
+    server_on = True
 
 # Function to start the client in a separate thread
 def start_client():
     global client_process  
+    
     client_process = subprocess.Popen(['python', app_path('resources/PyCode/client.py')])
+    client_on = True
 
 def kill_client():
     client_process.kill()
@@ -68,6 +72,10 @@ while True:
             sys.exit()
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
+                if(client_on):
+                    kill_client()
+                if(server_on):
+                    kill_server()
                 pygame.quit()
                 sys.exit()
         elif event.type == pygame.MOUSEBUTTONDOWN:

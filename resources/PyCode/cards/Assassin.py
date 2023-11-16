@@ -11,3 +11,4 @@ class Assassin:
 
     def ability(player):
         player.gold -= 5
+

@@ -48,5 +48,3 @@ def quick_sort(l):
         return quick_sort([e for e in l[1:] if e <= l[0]]) + [l[0]] +\
             quick_sort([e for e in l[1:] if e > l[0]])
 
-def kill_player_card(player):
-    pass

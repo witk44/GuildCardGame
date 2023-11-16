@@ -1,21 +1,21 @@
 import pygame
 import random
-from PyCode.cards.Alchemist import Alchemist
-from PyCode.cards.Assassin import Assassin
-from PyCode.cards.Cleric import Cleric
-from PyCode.cards.Commoner import Commoner
-from PyCode.cards.Jester import Jester
-from PyCode.cards.King import King
-from PyCode.cards.Knight import Knight
-from PyCode.cards.Marksman import Marksman
-from PyCode.cards.Merchant import Merchant
-from PyCode.cards.Necromancer import Necromancer
-from PyCode.cards.Princess import Princess
-from PyCode.cards.Queen import Queen
-from PyCode.cards.Thief import Thief
-from PyCode.Player import Player
-from PyCode.config import *
-from PyCode.utilities import *
+from resources.PyCode.cards.Alchemist import Alchemist
+from resources.PyCode.cards.Assassin import Assassin
+from resources.PyCode.cards.Cleric import Cleric
+from resources.PyCode.cards.Commoner import Commoner
+from resources.PyCode.cards.Jester import Jester
+from resources.PyCode.cards.King import King
+from resources.PyCode.cards.Knight import Knight
+from resources.PyCode.cards.Marksman import Marksman
+from resources.PyCode.cards.Merchant import Merchant
+from resources.PyCode.cards.Necromancer import Necromancer
+from resources.PyCode.cards.Princess import Princess
+from resources.PyCode.cards.Queen import Queen
+from resources.PyCode.cards.Thief import Thief
+from resources.PyCode.Player import Player
+from resources.PyCode.config import *
+from resources.PyCode.utilities import *
 Tile_Size = 64
 
 
@@ -112,6 +112,13 @@ class GuildGame:
                 player.current_deck.append(self.Game_Deck[index])
                 index += 1
 
+def launch():
+
+
+
+
+    pass
+
 Game = GuildGame()
 Game.start_game()
 Game.roll_dice()
@@ -133,9 +140,7 @@ def select_player(player):
      # Update the display
     pygame.display.flip()
 
-select_player("player")
-# while not Game.game_finished:
-#     pass
-x = 0
-while x <90000000:
-    x+=1
+
+
+
+    
