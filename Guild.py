@@ -16,6 +16,8 @@ from resources.PyCode.cards.Thief import Thief
 from resources.PyCode.Player import Player
 from resources.PyCode.config import *
 from resources.PyCode.utilities import *
+from resources.main_menu import MainMenu
+import subprocess
 Tile_Size = 64
 
 
@@ -24,11 +26,6 @@ num_of_cards = card_to_player_ratio
 # Initialize Pygame
 pygame.init()
 
-# Set up the display
-screen_info = pygame.display.Info()
-screen_width, screen_height = screen_info.current_w, screen_info.current_h
-screen = pygame.display.set_mode((screen_width, screen_height), pygame.FULLSCREEN)
-pygame.display.set_caption("Guild Card Game")
 
 
 
@@ -112,18 +109,7 @@ class GuildGame:
                 player.current_deck.append(self.Game_Deck[index])
                 index += 1
 
-def launch():
-
-
-
-
-    pass
-
-Game = GuildGame()
-Game.start_game()
-Game.roll_dice()
-
-
+    
 def kill_player_card(player):
     pass
 
@@ -141,6 +127,47 @@ def select_player(player):
     pygame.display.flip()
 
 
+# Function to start the server in a separate thread
+def start_server():
+    global server_process
+    server_process = subprocess.Popen(['python', app_path('resources/PyCode/server.py')])
+    server_on = True
+
+# Function to start the client in a separate thread
+def start_client():
+    global client_process  
+    
+    client_process = subprocess.Popen(['python', app_path('resources/PyCode/client.py')])
+    client_on = True
+
+def kill_client():
+    client_process.kill()
+
+def kill_server():
+    server_process.kill()
+
+def launch():
+   
+    Game = GuildGame()
+    mainMenu = MainMenu(Game.screen,Game.screen_width,Game.screen_height)
+    process = mainMenu.main_menu()
+    if(process):
+        start_client()
+    else:
+        start_server()
+    
+    # Game.start_game()
+    # Game.roll_dice()
+
+
+
+    pass
+
+
+
+
+
+launch()
 
 
     
