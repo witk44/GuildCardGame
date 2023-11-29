@@ -55,10 +55,7 @@ class MainMenu:
                     sys.exit()
                 elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
-                        if(self.client_on):
-                            kill_client()
-                        if(self.server_on):
-                            kill_server()
+                        
                         pygame.quit()
                         sys.exit()
                 elif event.type == pygame.MOUSEBUTTONDOWN:

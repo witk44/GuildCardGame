@@ -3,7 +3,7 @@ import os,sys
 import socket
 import pygame
 import math
-
+import psutil
 black = (0, 0, 0)
 white = (255, 255, 255)
 gray = (128,128,128)

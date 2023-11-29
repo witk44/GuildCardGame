@@ -13,7 +13,6 @@ SCREEN_HEIGHT = 600
 # Initialize Pygame
 pygame.init()
 
-s = socket.socket()
 host = socket.gethostname()
 ip = socket.gethostbyname(host)
 port = find_open_port()
@@ -24,7 +23,10 @@ SERVER_PORT = port  # Change this to your desired server port
 
 # Initialize the server socket
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server_socket.bind((SERVER_IP, SERVER_PORT))
+try:
+    server_socket.bind((SERVER_IP, SERVER_PORT))
+except socket.error as e:
+    str(e)
 server_socket.listen()
 
 clients = []  # List to store client connections

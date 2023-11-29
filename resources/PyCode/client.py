@@ -6,10 +6,11 @@ from utilities import *
 from GameCode import *
 from buttons import *
 import pyperclip
+from GuildGame import GuildGame
 s = socket.socket()
 host = socket.gethostname()
 ip = socket.gethostbyname(host)
-
+start_game = False
 
 class BlueSquare():
     def __init__(self) -> None:
@@ -66,6 +67,7 @@ def enter_game_code():
                 elif paste_button.rect.collidepoint(event.pos):
                     game_code = pyperclip.paste()
                     run = False
+                    pygame.quit()
         if run:
             # Clear the screen
             screen.fill(white)
@@ -131,43 +133,14 @@ def send_data(data):
 receive_thread = threading.Thread(target=receive_data)
 receive_thread.daemon = True
 receive_thread.start()
-# Pygame initialization
-pygame.init()
-screen = pygame.display.set_mode((800, 600))
 clock = pygame.time.Clock()
 
+Guild = GuildGame()
 
 running = True
 
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-            pygame.quit()
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
-                my_square.x -= 5
-                send_data(f"POS {my_square.x} {my_square.y}")  # Send player position to the server
-            elif event.key == pygame.K_RIGHT:
-                my_square.x += 5
-                send_data(f"POS {my_square.x} {my_square.y}")  # Send player position to the server
-            elif event.key == pygame.K_UP:
-                my_square.y -= 5
-                send_data(f"POS {my_square.x} {my_square.y}")  # Send player position to the server
-            elif event.key == pygame.K_DOWN:
-                my_square.y += 5
-                send_data(f"POS {my_square.x} {my_square.y}")  # Send player position to the server     
-            elif event.key == pygame.K_ESCAPE:
-                running = False
-                pygame.quit()
-    # TODO: Update game state based on the server updates
-
-    # Update the game display
-    screen.fill((255, 255, 255))
-    rect = pygame.Rect(my_square.x, my_square.y, 50, 50)
-    pygame.draw.rect(screen, (0, 255, 255), rect)
-    pygame.display.flip()
-    clock.tick(60)
+while not start_game:
+    Guild.waiting_screen()
 
 
 
